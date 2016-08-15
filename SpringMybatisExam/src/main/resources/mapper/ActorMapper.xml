@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+类名 -->
+<mapper namespace="com.hand.Entity.Actor.mapper">
+<resultMap type="actor" id="actor">
+<id column="aactor_id" jdbcType="INTEGER" property="actor_id"></id> 
+<result column="first_name" jdbcType="VARCHAR" property="first_name"></result>
+<result column="last_name" jdbcType="VARCHAR" property="last_name"></result> 
+<result column="alast_update" jdbcType="TIMESTAMP" property="last_update"></result>
+<collection property="filmactors" resultMap="com.hand.Entity.FilmActor.mapper.FilmActor"></collection>  
+</resultMap>
+
+
+  <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+  <select id="getAllActors" resultMap="actor">
+    select a.actor_id aactor_id,a.first_name,a.last_name,a.last_update alast_update,f.actor_id,f.film_id,f.last_update from actor a left join film_actor f on a.actor_id=f.actor_id
+  </select>
+ <select id="findById" parameterType="int" resultType="Actor">  
+       select * from actor where actor_id=#{id}  
+    </select>  
+ <insert id="addActor" parameterType="Actor" 
+        useGeneratedKeys="true" keyProperty="actor_id"> 
+        insert into actor(first_name,last_name,last_update)  
+             values(#{first_name},#{last_name},#{last_update})  
+    </insert>
+<delete id="deleteActor" parameterType="int">	
+        delete from actor where actor_id=#{id}
+    </delete>
+</mapper>

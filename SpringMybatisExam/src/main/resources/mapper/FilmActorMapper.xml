@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+类名 -->
+<mapper namespace="com.hand.Entity.FilmActor.mapper">
+<resultMap type="FilmActor" id="FilmActor">
+<id column="actor_id" jdbcType="INTEGER" property="actor_id"></id>
+<id column="film_id" jdbcType="INTEGER" property="film_id"></id>  
+<result column="last_update" jdbcType="TIMESTAMP" property="last_update"></result>
+<association property="actor" javaType="Actor">
+			<id column="aactor_id" property="actor_id"/>
+			<result column="first_name" property="first_name"/>
+			<result column="last_name" property="last_name"/>
+			<result column="alast_update" property="last_update"/>
+		</association>
+</resultMap>		
+		<select id="getAllActorbyfilmid"  parameterType="int" resultMap="FilmActor">
+	 select a.actor_id aactor_id,a.first_name,a.last_name,a.last_update alast_update,f.actor_id,f.film_id,f.last_update from film_actor f left join actor a on a.actor_id=f.actor_id  where film_id=#{id} LIMIT 0,1
+</select>
+
+</mapper>
