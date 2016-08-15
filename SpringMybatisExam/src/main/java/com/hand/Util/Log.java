@@ -20,5 +20,5 @@ public class Log {
 //	@After("execution(* com.hand.ServiceImpl.CustomerServiceImpl.addCustomer(..))")
     public void after(){
     	System.out.println("After Insert Customer Data");
-    }
+     }
     }

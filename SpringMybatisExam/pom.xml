@@ -7,7 +7,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>SpringMyBatis Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  <properties>  
+
+  <properties> 
+  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
     <org.springframework.security.version>3.2.3.RELEASE</org.springframework.security.version>  
     <org.springframework.version>4.0.4.RELEASE</org.springframework.version>  
 </properties>  
